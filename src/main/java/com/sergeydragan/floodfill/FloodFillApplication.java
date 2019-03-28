@@ -1,5 +1,6 @@
 package com.sergeydragan.floodfill;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +16,8 @@ public class FloodFillApplication {
         field.add(new ArrayList<>(Arrays.asList("0", "0", "0", "0", "0")));
 
         final FloodFiller floodFiller = new SimpleFloodFiller();
-        floodFiller.fillField(field);
-
-        // ▓
-        // ░
+        final Point startingPoint = new Point(0, 0);
+        floodFiller.fillField(field, startingPoint);
     }
 }
 
