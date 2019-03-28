@@ -19,9 +19,23 @@ public class FloodFillerTest {
         Assertions.assertEquals(result, getExpectedResult());
     }
 
+    @Test
+    public void testBadCoords() {
+        FloodFiller floodFiller = getSimpleFloodFiller();
+        List<List<String>> field = getField();
+
+        Point startingPoint = new Point(-5, 0);
+        List<List<String>> result = floodFiller.fillField(field, startingPoint);
+        Assertions.assertEquals(result, getField());
+
+        startingPoint = new Point(25, 2);
+        result = floodFiller.fillField(field, startingPoint);
+        Assertions.assertEquals(result, getField());
+    }
+
     private List<List<String>> getField() {
         List<List<String>> field = new ArrayList<>();
-        field.add(new ArrayList<>(Arrays.asList("0", "0", "0", "0", "0")));
+        field.add(new ArrayList<>(Arrays.asList("0", "0", "0", "0")));
         field.add(new ArrayList<>(Arrays.asList("1", "1", "0", "0", "0")));
         field.add(new ArrayList<>(Arrays.asList("0", "1", "0", "1", "0")));
         field.add(new ArrayList<>(Arrays.asList("0", "1", "1", "1", "0")));
@@ -31,9 +45,9 @@ public class FloodFillerTest {
 
     private List<List<String>> getExpectedResult() {
         List<List<String>> field = new ArrayList<>();
-        field.add(new ArrayList<>(Arrays.asList("*", "*", "*", "*", "*")));
+        field.add(new ArrayList<>(Arrays.asList("*", "*", "*", "*")));
         field.add(new ArrayList<>(Arrays.asList("1", "1", "*", "*", "*")));
-        field.add(new ArrayList<>(Arrays.asList("*", "1", "0", "1", "*")));
+        field.add(new ArrayList<>(Arrays.asList("*", "1", "*", "1", "*")));
         field.add(new ArrayList<>(Arrays.asList("*", "1", "1", "1", "*")));
         field.add(new ArrayList<>(Arrays.asList("*", "*", "*", "*", "*")));
         return field;
